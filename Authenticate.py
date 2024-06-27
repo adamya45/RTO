@@ -83,6 +83,21 @@ class VehicleRegistration:
 
 
 class viewData:
+    
+    def viewAllVehicles(self):
+        try:
+            conn = connect_db()
+            cur = conn.cursor()
+
+            query = 'select * from vehicle_registrations '
+            cur.execute(query)
+            res = cur.fetchall()
+
+            for row in res:
+                print(row)
+        except Error as e:
+            print(f"Cannot fetch records!: {e}")
+    
     def viewVehicles(self, regisNo):
         try:
             conn = connect_db()
@@ -90,6 +105,20 @@ class viewData:
 
             query = 'select * from vehicle_registrations where registration_number = %(registration_number)s'
             cur.execute(query,{'registration_number':regisNo})
+            res = cur.fetchall()
+
+            for row in res:
+                print(row)
+        except Error as e:
+            print(f"Cannot fetch records!: {e}")
+    
+    def viewLicense(self, lno):
+        try:
+            conn = connect_db()
+            cur = conn.cursor()
+
+            query = 'select * from driving_licenses where license_number = %(license_number)s'
+            cur.execute(query,{'license_number':lno})
             res = cur.fetchall()
 
             for row in res:
@@ -110,7 +139,7 @@ class viewData:
                 print(row)
             
         except Error as e:
-            print(f"No challan Data found!: {e}")
+            print(f"No chalaan Data found!: {e}")
 
 #bgrp,add,uid, name,
 class User:
@@ -118,10 +147,15 @@ class User:
         try:
             conn = connect_db()
             cur = conn.cursor()
+            
+            if len(adhar)!=12:
+                print("adhar number should be of length 12")
+                return
+            
             query = 'insert into vehicle_registrations (user_id,purchase_date,engine_number,chassis_number,owner_name,aadhar_card) values(%s,%s,%s,%s,%s,%s)'
             cur.execute(query,(user_id,purchase_date, engine_number, chassis_number, owner_name,adhar))
             conn.commit()
-            print('Applied for registration succesfully!')
+            print('Applied for registration successfully!')
             conn.close()
         except Error as e:
             print(f"user registration failed!:{e}")
@@ -130,19 +164,11 @@ class User:
         try:
             conn = connect_db()
             cur = conn.cursor()
+            
+            if len(adhar)!=12:
+                print("adhar number should be of length 12")
+                return
 
-            # Issue Need to resolved----------
-
-            # cur.execute('select license_number from driving_licenses where user_id=%(user_id)s',{'user_id':uid})
-            # res = cur.fetchone()
-            # for lno in res:
-            #     print(lno)
-            #     if lno is None:
-            #         print("Already Owns a License")
-            #         return
-                # if lno is no:
-                #     print(f"Chalaan with this id {chalaan_id} is Already Paid!")
-                    # return
 
             ageObj = ageCalculator()
             res = ageObj.is_greater(dob,18)
@@ -167,6 +193,11 @@ class User:
         try:
             conn = connect_db()
             cur = conn.cursor()
+            
+            if len(newadhar)!=12:
+                print("adhar number should be of length 12")
+                return
+            
             objView = viewData()
             objView.viewVehicles(regisNo)
 

@@ -116,7 +116,7 @@ def user():
             user()
         case 3:
             print("Exit")
-            return
+            exit()
         case _:
             print("Invalid choice")
             user()
@@ -127,12 +127,13 @@ def admin_menu():
         print_header("Admin Menu")
         print("1. View Vehicles")
         print("2. View Licenses")
-        print("3. View Challans")
+        print("3. View Chalaans")
         print("4. Approve Vehicle Registration")
         print("5. Approve License")
-        print("6. Generate Challan for Users")
-        print("7. Apply for Scrap")
-        print("8. Logout")
+        print("6. Generate Chalaan for Users")
+        print("7. Approve for Scrap")
+        print("8. View All Vehicles")
+        print("9. Logout")
         choice = input("\nEnter your choice: ")
         
         match choice:
@@ -152,6 +153,8 @@ def admin_menu():
             case '7':
                 approve_scrap()
             case '8':
+                allVehicles()
+            case '9':
                 main()
             case _:
                 print("Invalid choice. Please try again.")
@@ -165,7 +168,7 @@ def user_menu():
         print("3. Change Owner")
         print("4. View Vehicle")
         print("5. View License")
-        print("6. View Challan")
+        print("6. View Chalaan")
         print("7. Apply for Scrap")
         print("8. Logout")
         choice = input("\nEnter your choice: ")
@@ -197,7 +200,8 @@ def view_vehicles():
     dataObj.viewVehicles(regisNo)
 
 def view_licenses():
-    pass
+    lno = input("License Number: ")
+    dataObj.viewLicense(lno)
 
 def view_challans():
     regiNo = input("Registration Number: ")
@@ -225,6 +229,9 @@ def approve_scrap():
     objAdmin.view_pending_scrapping()
     regisNo = input("Registration Number: ")
     objAdmin.approve_scrapping(regisNo)
+    
+def allVehicles():
+    dataObj.viewAllVehicles();
 
 def apply_vehicle_registration():
     userId = input("UserID: ")
@@ -240,7 +247,7 @@ def apply_license():
     name = input('Name:')
     dob = input("Date of Birth (yyyy-mm-dd): ")
     bgrp = input("Blood Group: ")
-    addr = input("Adress: ")
+    addr = input("Address: ")
     uid = input("UserId: ")
     adhar = input("Aadhar Card: ")
 
@@ -288,6 +295,7 @@ def main():
     print("+----+----------------+")
     print("| 1. |  User      |")
     print("| 2. |  Admin     |")
+    print("| 3. |  Exit      |")
     print("+----+----------------+")
 
     user_input = int(input("Enter the option: "))
@@ -302,20 +310,13 @@ def main():
             x=obj.loginAdmin(adminId,password)
             if x is True:
                 admin_menu()
+                
+        case 3:
+            print("Exit")
+            exit()
         case _:
             print("Invalid choice")
 
-    # attempts = 3
-    # while attempts > 0:
-    #     # login()
-    #     attempts -= 1
-    #     if attempts > 0:
-    #         retry = input("\nDo you want to try again? (y/n): ").strip().lower()
-    #         if retry != 'y':
-    #             break
-    #     else:
-    #         print("Too many failed attempts. Exiting.")
-    #         break
 
 if __name__ == "__main__":
     main()
