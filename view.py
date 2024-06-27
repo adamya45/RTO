@@ -1,67 +1,6 @@
 from Authenticate import *
-# import getpass
-
-# class User:
-#     def register(self):
-#         firstName = input("FirstName: ")
-#         lastName = input("LastName: ")
-#         userId = input("UserID: ")
-#         password = input("Password: ")
-        
-#         obj = Authentication()
-#         obj.registerUser(firstName,lastName,userId,password)
-    
-#     def login(self):
-#         userId = input("userID: ")
-#         password = input("Password: ")
-
-#         obj = Authentication()
-#         obj.loginUser(userId,password)
-
-    
-
-# class Admin:
-#     def loginAdmin(self,adminId,password):
-#         adminId = input("adminID: ")
-#         password = input("Password: ")
-
-#         obj = Authentication()
-#         obj.loginAdmin()
-
-# class viewData:
-#     def viewVehicle():
-
-#         pass
-#     def viewLicense():
-#         pass
-#     def viewChallan():
-#         pass
 
 
-# def main():
-    # print("=========| Welcome, TO RTO |==========")
-    # print("+----+----------------+")
-    # print("| 1. |  User      |")
-    # print("| 2. |  Admin     |")
-    # print("+----+----------------+")
-
-#     user_role=input('Enter Options: ')
-#     match user_role:
-#         case '1':
-#             print('User')
-#             user = User()
-#             user.register()
-            
-#         case '2':
-#             print('Admin')
-#         case _:
-#             print('Invalid choice')
-
-
-# if __name__ == "__main__":
-#     main()
-
-import getpass
 import os
 
 # Sample users and roles data
@@ -260,35 +199,6 @@ def change_owner():
 
     objUser.changeOwner(regisNo,newOwner,newAdhar)
 
-# def view_vehicle():
-#     print_header("View Vehicle")
-#     print("Viewing vehicle...")
-
-# def view_license():
-#     print_header("View License")
-#     print("Viewing license...")
-
-# def view_challan():
-#     print_header("View Challan")
-#     print("Viewing challan...")
-
-# def login():
-#     clear_screen()
-#     print_header("CLI Login Portal")
-#     username = input("Username: ")
-#     password = getpass.getpass("Password: ")
-    
-#     if username in users and users[username]['password'] == password:
-#         print(f"\nWelcome, {username}!")
-#         input("\nPress Enter to continue...")
-#         role = users[username]['role']
-#         if role == 'admin':
-#             admin_menu()
-#         elif role == 'user':
-#             user_menu()
-#     else:
-#         print("\nInvalid username or password. Please try again.")
-#         input("\nPress Enter to continue...")
 
 def main():
     print("=========| Welcome, TO RTO |==========")
